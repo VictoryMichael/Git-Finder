@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>GitHub~Finder</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    
+<h1>Git finder</h1>
+
+
+    <div class="search-form">
+      <span> <i class="fa fa-search" aria-hidden="true"></i> </span>
+      <input type="text" placeholder="Search Github Username..." id="input">
+       <button id="search">Search</button>
+    </div>
+
+    <div class="container">
+
+    <div class="container-body">
+      <img src="https://github.blog/wp-content/uploads/2012/03/codercat.jpg?resize=896%2C896" alt="" id="prof-img">
+      <p class="name">Max tomwind</p>
+
+      <div class="joined">
+        <p id="login">@max_tom</p>
+        <p class="created">joined:2021-12-18T17:05:27Z</p>
+      </div>
+    
+
+
+      <div class="bio">
+        👋  My name is Victory am  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem minima voluptas veniam nihil accusamus expedita!  a self taught front-end developer,\r\n and Blockchain Enthusiast based in Lagos. 
+      </div>
+
+      <div class="container-followers">
+        <p>Repos <span class="content" id="repos">27</span></p>
+        <p>Followers <span class="content" id="fellowers">17</span></p>
+        <p>Following <span class="content" id="followings">7</span></p>
+    </div>
+     
+      <div class="locatio-content">
+       <p class="locat-t"> <i class="fa fa-map-marker" aria-hidden="true"></i> <span id="locations">Nigeri/Lagos</span> </p>
+       <p class="locat-t"> <i class="fa fa-twitter" aria-hidden="true"></i>  <span id="twitter">victory_code1</span> </p>
+      </div>
+   
+
+ </div> 
+
+
+ 
+
+
+    </div>
+
+
+
+
+<script>
+   $("#search").click(() => {
+     $.getJSON('https:/api.github.com/users/'+$('#input').val(),(data)=>{
+      $(".name").html(data.name);
+      $('.created').html('joined:'+data.created_at);
+      $("#login").html('@'+ data.login);
+      $('#fellowers').html(data.followers);
+      $('#followings').html(data.following);
+      $('.bio').html(data.bio);
+      $('#locations').html(data.location);
+      $('#repos').html(data.public_repos);
+      $('#twitter').html(data.twitter_username);
+      $('#prof-img').attr('src',data.avatar_url);
+     
+
+     })
+   })
+
+
+
+    
+</script>
+
+</body>
+</html>
